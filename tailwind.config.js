@@ -16,6 +16,11 @@ module.exports = {
         popextrabold: ["Poppins-ExtraBold", "sans-serif"],
         popblack: ["Poppins-Black", "sans-serif"],
       },
+      colors: {
+        primary: '#63C132',
+        secondary: '#9EE37D',
+        tertiary: '#D7FFAB'
+      }
     },
   },
   plugins: [],
