@@ -50,7 +50,6 @@ const ResultsScreen = () => {
             latitude,
             longitude,
             timestamp: formatTimestamp(timestamp),
-            photoUri, // Assuming `photoUri` is a direct accessible URL
             mapImage: staticMapUrl,
         };
     
