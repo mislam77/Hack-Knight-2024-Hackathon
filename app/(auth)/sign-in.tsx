@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Text, ScrollView, View, Alert } from "react-native";
+import { Text, ScrollView, View, Alert, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FIREBASE_AUTH } from "../../FirebaseConfig"; // Import your Firebase setup
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -7,6 +7,7 @@ import ReusableButton from "@/components/ReusableButton";
 import FormField from "@/components/FormField";
 import { Link, router } from "expo-router";
 import { LinearGradient } from 'expo-linear-gradient';
+import { images } from "@/constants";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -44,9 +45,13 @@ const SignIn = () => {
     //     colors={['#9EE37D', '#358600']}
     //     className="absolute h-full left-0 right-0 bottom-0 top-0"
     //   >
-    <SafeAreaView className="h-full">
+    <SafeAreaView className="h-full w-full">
       <ScrollView>
-        <View className="w-full justify-center min-h-[70vh] px-6 my-6">
+      <View className="w-full h-[75vh] px-3-relative">
+        <Image source={images.contactbg} resizeMode="contain" className="w-[100vw] h-[40vh]"/>
+        <View className="justify-center min-h-[60vh] my-6 
+        w-[85vw] bg-white absolute 
+                top-1/4 left-8 rounded-xl px-5 py-2 shadow">
           <Text className="font-poplight text-4xl">Log in</Text>
 
           {/* Email Field */}
@@ -89,33 +94,8 @@ const SignIn = () => {
             </Link>
           </View>
         </View>
-        
+        </View>
         </ScrollView>
-        <SafeAreaView className="h-full">
-            <View className="w-full h-[75vh] p-3 relative">
-                <Image source={images.contactbg} resizeMode="contain" className="w-full h-[50vh]"/>
-                <View className="w-[85vw] h-[50vh] bg-white absolute 
-                bottom-0 left-8 rounded-xl px-5 py-2 shadow">
-                <Text className="mt-7 text-2xl font-poplight text-fontlight">Log in</Text>
-                <FormField
-                title="Email"
-                value={email}
-                handleText={setEmail}
-                otherStyles="mt-7"
-                />
-                
-                <View className="px-12">
-                <ReusableButton title="Draft Email " 
-                handlePress={handleSendEmail} 
-                containerStyles="bg-complementary mt-12"
-                textStyles="text-white text-xl font-popregular"
-                isLoading={undefined}
-                />
-                </View>
-                </View>
-            </View>
-            </SafeAreaView>
-      
     </SafeAreaView>
     // </LinearGradient>
   );

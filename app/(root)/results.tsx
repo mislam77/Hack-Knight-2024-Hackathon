@@ -155,7 +155,7 @@ const ResultsScreen = () => {
 
                             setResults(parsedResult);
 
-                            await sendEmail(parsedResult); // Send the email after processing
+                            //await sendEmail(parsedResult); // Send the email after processing
 
                             const { uid } = FIREBASE_AUTH.currentUser || {};
                             if (uid) {
@@ -210,39 +210,41 @@ const ResultsScreen = () => {
     }
 
     return (
-        <SafeAreaView className="h-full">
-        <View className="flex-1 gap-2 px-10 justify-center w-full">
+        <SafeAreaView className="h-full bg-secondary">
+        <View className="flex-1 gap-2 px-10 mt-5 w-full">
             <View className="w-full ">
-                <Text className="text-2xl font-popmedium text-center">{(results.confidence * 100).toFixed(2)}% Accuracy</Text>
+                <Text className="text-3xl font-popmedium text-center">{(results.confidence * 100).toFixed(2)}% Accuracy</Text>
             </View>
             <View className="flex-row flex-wrap gap-2 mt-10">
-                <View className="grow bg-complementary">
+                <View className="grow bg-complementary p-4 items-center rounded-xl">
                     <Text className="text-white font-popsemibold text-xl">Item: {results.waste}</Text>
                 </View>
-                <View className="grow bg-complementary">
+                <View className="grow bg-complementary p-4 items-center rounded-xl">
                     <Text className="text-white font-popsemibold text-xl">Type: {results.wasteType}</Text>
                 </View>
-                <View className="grow bg-complementary">
+                <View className="grow bg-complementary p-4 items-center rounded-xl">
                     <Text className="text-white font-popsemibold text-xl">CO2 Offset: {results.co2Offset}</Text>
                 </View>
-                <View className="grow bg-complementary">
+                <View className="grow bg-complementary p-4 items-center rounded-xl">
                    <Text className="text-white font-popsemibold text-xl">Quantity: {results.quantity}</Text>
                 </View>
-                <View className="grow bg-complementary">
+                <View className="grow bg-complementary p-4 items-center rounded-xl">
                     <Text className="text-white font-popsemibold text-xl">Location: {latitude}, {longitude}</Text>
                 </View>
-                <View className="grow bg-complementary">
+                <View className="grow bg-complementary p-4 items-center rounded-xl">
                     <Text className="text-white font-popsemibold text-xl">Timestamp: {formatTimestamp(timestamp)}</Text>
                 </View>
             </View>
+            <View className="px-12">
             {/* <Button title="View on Map" onPress={handleNavigateToMap} /> */}
             <ReusableButton 
-            title={undefined} 
+            title="View on Map" 
             handlePress={handleNavigateToMap} 
-            containerStyles={undefined} 
-            textStyles={undefined} 
+            containerStyles="bg-complementary mt-12" 
+            textStyles="text-white text-xl font-popregular"
             isLoading={undefined}
             />
+            </View>
         </View>
         </SafeAreaView>
     );

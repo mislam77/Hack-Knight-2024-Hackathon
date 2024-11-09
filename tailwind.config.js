@@ -21,6 +21,7 @@ module.exports = {
         secondary: '#9EE37D',
         tertiary: '#D7FFAB',
         complementary: '#609670',
+        seccomplementary: '#92E3A9',
         fontdark: '#18181b',
         fontlight: '#3f3f46'
       }

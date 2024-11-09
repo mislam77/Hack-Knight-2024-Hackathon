@@ -53,7 +53,7 @@ const SignUp = () => {
       <ScrollView>
         <View className="w-full justify-center min-h-[70vh] px-6 my-6 relative">
           <View className="flex flex-row items-start">
-            <Image source={images.signinbg} resizeMode="contain" className="w-full h-[20vh]"/>
+            <Image source={images.signinbg} resizeMode="contain" className="w-full h-[10vh]"/>
           </View>
           <Text className="font-poplight text-4xl">Welcome!</Text>
           {/* User input fields */}
