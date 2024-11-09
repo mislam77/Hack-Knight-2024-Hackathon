@@ -11,7 +11,7 @@ type User = {
 
 const users: User[] = [
     { userImage: '', username: 'Brandon Ojeda', points: 100 },
-    { userImage: '', username: 'John Doe', points: 50 },
+    { userImage: '', username: 'John Pork', points: 50 },
     { userImage: '', username: 'Jane Doe', points: 25 },
     // Add more users as needed
 ];
@@ -39,7 +39,7 @@ const Leaderboard = () => {
     return (
         <SafeAreaView className="flex-1 bg-green-800 p-4">
             <Text className="text-center text-3xl font-bold text-white mb-6">
-                Leaderboard
+                Leaderboard 🏆
             </Text>
 
             {rankedUsers.map((user) => (

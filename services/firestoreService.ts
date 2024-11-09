@@ -81,3 +81,20 @@ export const addSubmission = async (
         throw error;
     }
 };
+
+// Get user document by userId
+export const getUser = async (userId: string) => {
+    try {
+        const userRef = doc(db, "users", userId);
+        const userDoc = await getDoc(userRef);
+
+        if (!userDoc.exists()) {
+            throw new Error("User not found");
+        }
+
+        return userDoc.data();
+    } catch (error) {
+        console.error("Error getting user document:", error);
+        throw error;
+    }
+};

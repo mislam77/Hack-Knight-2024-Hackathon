@@ -91,6 +91,30 @@ const SignIn = () => {
         </View>
         
         </ScrollView>
+        <SafeAreaView className="h-full">
+            <View className="w-full h-[75vh] p-3 relative">
+                <Image source={images.contactbg} resizeMode="contain" className="w-full h-[50vh]"/>
+                <View className="w-[85vw] h-[50vh] bg-white absolute 
+                bottom-0 left-8 rounded-xl px-5 py-2 shadow">
+                <Text className="mt-7 text-2xl font-poplight text-fontlight">Log in</Text>
+                <FormField
+                title="Email"
+                value={email}
+                handleText={setEmail}
+                otherStyles="mt-7"
+                />
+                
+                <View className="px-12">
+                <ReusableButton title="Draft Email " 
+                handlePress={handleSendEmail} 
+                containerStyles="bg-complementary mt-12"
+                textStyles="text-white text-xl font-popregular"
+                isLoading={undefined}
+                />
+                </View>
+                </View>
+            </View>
+            </SafeAreaView>
       
     </SafeAreaView>
     // </LinearGradient>

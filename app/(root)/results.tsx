@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, Button } from 'react-native';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { useRoute, useNavigation } from '@react-navigation/native';
-import { updateUserMetrics, addSubmission, uploadPhoto } from "../../services/firestoreService";
+import { updateUserMetrics, addSubmission } from "../../services/firestoreService";
 import { FIREBASE_AUTH } from '@/FirebaseConfig';
 import ReusableButton from '@/components/ReusableButton';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { getUser } from '@/services/firestoreService'
+import { send } from '@emailjs/react-native';
 
 type Results = {
     waste: string;
@@ -21,6 +24,53 @@ const ResultsScreen = () => {
     const [results, setResults] = useState<Results | null>(null);
     const [loading, setLoading] = useState(true);
     const geminiApiKey = 'AIzaSyDw_IqkX8InhtPcHIUq6AeYFuzOVEHTvyA';
+
+    const fetchUsername = async (userId) => {
+        try {
+            const userData = await getUser(userId); // Fetch the user document
+            const username = userData.username; // Access the username field
+    
+            console.log('Username:', username);
+            return username;
+        } catch (error) {
+            console.error('Error fetching username:', error);
+            return null;
+        }
+    };
+
+    const sendEmail = async (results) => {
+        const staticMapUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=15&size=600x300&markers=color:red%7C${latitude},${longitude}&key=AIzaSyCHup0y0lH8PUkcdbAUgXnHIDivVANVS84`;
+        const userId = FIREBASE_AUTH.currentUser?.uid;
+        const userName = await fetchUsername(userId)
+        const emailData = {
+            username: userName,
+            wasteName: results.waste,
+            wasteType: results.wasteType,
+            quantity: results.quantity,
+            latitude,
+            longitude,
+            timestamp: formatTimestamp(timestamp),
+            photoUri, // Assuming `photoUri` is a direct accessible URL
+            mapImage: staticMapUrl,
+        };
+    
+        try {
+            const response = await send(
+                'service_bmh1cwm',
+                'template_aq6pa9b',
+                {
+                  ...emailData,
+                },
+                {
+                  publicKey: 'Hkcb4JRO4oAFXsIy9',
+                },
+              );
+            console.log('Email sent successfully:', response);
+        } catch (error) {
+            console.error('Error sending email:', error);
+        }
+    };
+    
 
     const formatTimestamp = (timestamp) => {
         if (!timestamp || isNaN(Number(timestamp))) {
@@ -105,6 +155,8 @@ const ResultsScreen = () => {
 
                             setResults(parsedResult);
 
+                            await sendEmail(parsedResult); // Send the email after processing
+
                             const { uid } = FIREBASE_AUTH.currentUser || {};
                             if (uid) {
                                 const wasteQuantity = parseFloat(parsedResult.quantity.split(' ')[0]) || 0;
@@ -158,19 +210,41 @@ const ResultsScreen = () => {
     }
 
     return (
-        <View style={styles.container}>
-            <Text>Item: {results.waste}</Text>
-            <Text>Type: {results.wasteType}</Text>
-            <Text>Quantity: {results.quantity}</Text>
-            <Text>CO2 Offset: {results.co2Offset}</Text>
-            <Text>Confidence: {(results.confidence * 100).toFixed(2)}%</Text>
-            <Text>Location: {latitude}, {longitude}</Text>
-            <Text>Timestamp: {formatTimestamp(timestamp)}</Text>
+        <SafeAreaView className="h-full">
+        <View className="flex-1 gap-2 px-10 justify-center w-full">
+            <View className="w-full ">
+                <Text className="text-2xl font-popmedium text-center">{(results.confidence * 100).toFixed(2)}% Accuracy</Text>
+            </View>
+            <View className="flex-row flex-wrap gap-2 mt-10">
+                <View className="grow bg-complementary">
+                    <Text className="text-white font-popsemibold text-xl">Item: {results.waste}</Text>
+                </View>
+                <View className="grow bg-complementary">
+                    <Text className="text-white font-popsemibold text-xl">Type: {results.wasteType}</Text>
+                </View>
+                <View className="grow bg-complementary">
+                    <Text className="text-white font-popsemibold text-xl">CO2 Offset: {results.co2Offset}</Text>
+                </View>
+                <View className="grow bg-complementary">
+                   <Text className="text-white font-popsemibold text-xl">Quantity: {results.quantity}</Text>
+                </View>
+                <View className="grow bg-complementary">
+                    <Text className="text-white font-popsemibold text-xl">Location: {latitude}, {longitude}</Text>
+                </View>
+                <View className="grow bg-complementary">
+                    <Text className="text-white font-popsemibold text-xl">Timestamp: {formatTimestamp(timestamp)}</Text>
+                </View>
+            </View>
             {/* <Button title="View on Map" onPress={handleNavigateToMap} /> */}
-            <ReusableButton
-
+            <ReusableButton 
+            title={undefined} 
+            handlePress={handleNavigateToMap} 
+            containerStyles={undefined} 
+            textStyles={undefined} 
+            isLoading={undefined}
             />
         </View>
+        </SafeAreaView>
     );
 };
 

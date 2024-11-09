@@ -1,6 +1,6 @@
 import { House, Mail , Trophy, Map, Scan } from 'lucide-react-native';
 import { Tabs } from "expo-router";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 
 export default function Layout() {
   return (
@@ -11,7 +11,7 @@ export default function Layout() {
         tabBarInactiveTintColor: "black",
         tabBarShowLabel: false,
         tabBarStyle: {
-          backgroundColor: '#D7FFAB',
+          backgroundColor: '#609670',
           borderRadius: 30,
           paddingBottom: 0, // ios only
           overflow: "hidden",
@@ -33,7 +33,11 @@ export default function Layout() {
           headerShown: false,
           tabBarIcon: ({focused }) => (
             <View className={`items-center justify-center gap-2 w-20 h-24`}>
-              <House color={`${focused ? "#18181b" : "#3f3f46"}`} />
+              <House color="#e5e7eb"/>
+              <Text
+              className={`${focused ? "font-popsemibold" : "font-popregular"} text-xs text-white`}>
+                Home
+              </Text>
             </View>
           ),
         }}
@@ -46,7 +50,11 @@ export default function Layout() {
           headerShown: false,
           tabBarIcon: ({ focused }) => (
             <View className={`items-center justify-center gap-2 w-20 h-24`}>
-              <Mail color={`${focused ? "#18181b" : "#3f3f46"}`} />
+              <Mail color="#e5e7eb" />
+              <Text
+              className={`${focused ? "font-popsemibold" : "font-popregular"} text-xs text-white`}>
+                Contact
+              </Text>
             </View>
           ),
         }}
@@ -58,7 +66,11 @@ export default function Layout() {
           headerShown: false,
           tabBarIcon: ({ focused }) => (
             <View className={`items-center justify-center gap-2 w-20 h-24`}>
-              <Scan color={`${focused ? "#18181b" : "#3f3f46"}`} />
+              <Scan color="#e5e7eb" />
+              <Text
+              className={`${focused ? "font-popsemibold" : "font-popregular"} text-xs text-white`}>
+                Camera
+              </Text>
             </View>
           ),
         }}
@@ -70,7 +82,11 @@ export default function Layout() {
           headerShown: false,
           tabBarIcon: ({ focused }) => (
             <View className={`items-center justify-center gap-2 w-20 h-24`}>
-              <Trophy color={`${focused ? "#18181b" : "#3f3f46"}`} />
+              <Trophy color="#e5e7eb" />
+              <Text
+              className={`${focused ? "font-popsemibold" : "font-popregular"} text-xs text-white`}>
+                Leaderboard
+              </Text>
             </View>
           ),
         }}
@@ -82,7 +98,11 @@ export default function Layout() {
           headerShown: false,
           tabBarIcon: ({ focused }) => (
             <View className={`items-center justify-center gap-2 w-20 h-24`}>
-              <Map color={`${focused ? "#18181b" : "#3f3f46"}`} />
+              <Map color="#e5e7eb" />
+              <Text
+              className={`${focused ? "font-popsemibold" : "font-popregular"} text-xs text-white`}>
+                Map
+              </Text>
             </View>
           ),
         }}

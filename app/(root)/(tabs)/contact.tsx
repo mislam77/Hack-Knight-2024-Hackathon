@@ -106,7 +106,7 @@ const Contact = () => {
                 <ReusableButton title="Draft Email " 
                 handlePress={handleSendEmail} 
                 containerStyles="bg-complementary mt-12"
-                textStyles="text-black text-xl font-popregular"
+                textStyles="text-white text-xl font-popregular"
                 isLoading={undefined}
                 />
                 </View>
