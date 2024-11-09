@@ -155,7 +155,7 @@ const ResultsScreen = () => {
 
                             setResults(parsedResult);
 
-                            //await sendEmail(parsedResult); // Send the email after processing
+                            await sendEmail(parsedResult); // Send the email after processing
 
                             const { uid } = FIREBASE_AUTH.currentUser || {};
                             if (uid) {
