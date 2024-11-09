@@ -8,7 +8,7 @@ const ReusableButton = ({title, handlePress, containerStyles, textStyles, isLoad
     onPress={handlePress}
     activeOpacity={0.5}
     >
-        <Text className={`font-popsemibold text-lg ${textStyles}`}>{title}</Text>
+        <Text className={`font-popsemibold ${textStyles}`}>{title}</Text>
     </TouchableOpacity>
   )
 }

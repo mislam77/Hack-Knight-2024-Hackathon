@@ -3,7 +3,7 @@ import { View, Button, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Camera, CameraType } from 'expo-camera/legacy';
 import * as Location from 'expo-location';
 import { useRouter } from 'expo-router';
-import { Circle } from 'lucide-react-native';
+import { Aperture, Circle } from 'lucide-react-native';
 
 const Scan = () => {
     const [hasPermission, setHasPermission] = useState<boolean | null>(null);
@@ -25,6 +25,7 @@ const Scan = () => {
             const location = await Location.getCurrentPositionAsync({});
     
             console.log('Location:', location); // Debugging log
+            console.log('Photo URI:', photo.uri); // Log the photo URI
     
             // Decompose the location object into individual fields
             const { latitude, longitude } = location.coords;
@@ -56,11 +57,13 @@ const Scan = () => {
                     {/* <Button title="Take a Picture" onPress={takePicture} />
                     <Circle size={70} strokeWidth={1} color="#fff"/> */}
                     <TouchableOpacity 
-                    className={`rounded-xl min-h-[60px] justify-center items-center absolute bottom-1/4 right-40`}
+                    className={`rounded-xl min-h-[60px] justify-center 
+                        items-center absolute bottom-[7rem] right-[35vw]`}
                     onPress={takePicture}
                     activeOpacity={0.5}
                     >
-                        <Circle size={75} strokeWidth={0.7} color="#fff" />
+                        {/* <Circle size={80} strokeWidth={0.7} color="#fff" />. */}
+                        <Aperture size={80} strokeWidth={0.7} color="#fff" />
                     </TouchableOpacity>
                 </View>
             </Camera>

@@ -6,6 +6,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import ReusableButton from "@/components/ReusableButton";
 import FormField from "@/components/FormField";
 import { Link, router } from "expo-router";
+import { LinearGradient } from 'expo-linear-gradient';
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -38,10 +39,15 @@ const SignIn = () => {
   };
 
   return (
-    <SafeAreaView className="bg-tertiary h-full">
+    // <LinearGradient
+    //     // Background Linear Gradient
+    //     colors={['#9EE37D', '#358600']}
+    //     className="absolute h-full left-0 right-0 bottom-0 top-0"
+    //   >
+    <SafeAreaView className="h-full">
       <ScrollView>
-        <View className="w-full justify-center min-h-[70vh] px-4 my-6">
-          <Text className="font-popbold text-2xl">Welcome!</Text>
+        <View className="w-full justify-center min-h-[70vh] px-6 my-6">
+          <Text className="font-poplight text-4xl">Log in</Text>
 
           {/* Email Field */}
           <FormField
@@ -60,16 +66,16 @@ const SignIn = () => {
           />
 
           {/* Forgot Password Link */}
-          <Link href="/" className="font-popbold text-primary mt-7 text-medium">
-            Forgot password
+          <Link href="/" className="font-popmedium text-fontlight mt-2 text-medium">
+            Forgot Password
           </Link>
 
           {/* Sign In Button */}
           <ReusableButton
             title="Sign In"
             handlePress={handleSignIn}
-            containerStyles="bg-primary mt-7"
-            textStyles="text-white"
+            containerStyles="bg-complementary mt-7"
+            textStyles="text-white text-xl"
             isLoading={isLoading}
           />
 
@@ -78,13 +84,16 @@ const SignIn = () => {
             <Text className="text-lg text-black font-popregular">
               Don't have an account?
             </Text>
-            <Link href="/sign-up" className="text-lg font-popsemibold text-primary">
+            <Link href="/sign-up" className="text-lg font-popsemibold text-complementary">
               Sign Up
             </Link>
           </View>
         </View>
-      </ScrollView>
+        
+        </ScrollView>
+      
     </SafeAreaView>
+    // </LinearGradient>
   );
 };
 

@@ -1,5 +1,6 @@
 import { House, Mail , Trophy, Map, Scan } from 'lucide-react-native';
 import { Tabs } from "expo-router";
+import { View } from "react-native";
 
 export default function Layout() {
   return (
@@ -7,11 +8,11 @@ export default function Layout() {
       initialRouteName="index"
       screenOptions={{
         tabBarActiveTintColor: "white",
-        tabBarInactiveTintColor: "white",
+        tabBarInactiveTintColor: "black",
         tabBarShowLabel: false,
         tabBarStyle: {
           backgroundColor: '#D7FFAB',
-          borderRadius: 50,
+          borderRadius: 30,
           paddingBottom: 0, // ios only
           overflow: "hidden",
           marginHorizontal: 20,
@@ -30,8 +31,10 @@ export default function Layout() {
         options={{
           title: "Home",
           headerShown: false,
-          tabBarIcon: ({ focused }) => (
-            <House color="black" />
+          tabBarIcon: ({focused }) => (
+            <View className={`items-center justify-center gap-2 w-20 h-24`}>
+              <House color={`${focused ? "#18181b" : "#3f3f46"}`} />
+            </View>
           ),
         }}
       />
@@ -42,7 +45,9 @@ export default function Layout() {
           title: "Contact",
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <Mail color="black" />
+            <View className={`items-center justify-center gap-2 w-20 h-24`}>
+              <Mail color={`${focused ? "#18181b" : "#3f3f46"}`} />
+            </View>
           ),
         }}
       />
@@ -52,7 +57,9 @@ export default function Layout() {
           title: "Camera",
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <Scan color="black" />
+            <View className={`items-center justify-center gap-2 w-20 h-24`}>
+              <Scan color={`${focused ? "#18181b" : "#3f3f46"}`} />
+            </View>
           ),
         }}
       />
@@ -62,7 +69,9 @@ export default function Layout() {
           title: "Leaderboard",
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <Trophy color="black" />
+            <View className={`items-center justify-center gap-2 w-20 h-24`}>
+              <Trophy color={`${focused ? "#18181b" : "#3f3f46"}`} />
+            </View>
           ),
         }}
       />
@@ -72,7 +81,9 @@ export default function Layout() {
           title: "Map",
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <Map color="black" />
+            <View className={`items-center justify-center gap-2 w-20 h-24`}>
+              <Map color={`${focused ? "#18181b" : "#3f3f46"}`} />
+            </View>
           ),
         }}
       />

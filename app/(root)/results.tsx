@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, Button } from 'react-native';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { useRoute, useNavigation } from '@react-navigation/native';
+import { updateUserMetrics, addSubmission, uploadPhoto } from "../../services/firestoreService";
+import { FIREBASE_AUTH } from '@/FirebaseConfig';
+import ReusableButton from '@/components/ReusableButton';
 
 type Results = {
     waste: string;
@@ -54,7 +57,7 @@ const ResultsScreen = () => {
             try {
                 const genAI = new GoogleGenerativeAI(geminiApiKey);
                 const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-
+    
                 const response = await fetch(photoUri);
                 const blob = await response.blob();
                 const reader = new FileReader();
@@ -62,7 +65,7 @@ const ResultsScreen = () => {
                 reader.onloadend = async () => {
                     if (reader.result && typeof reader.result === 'string') {
                         const base64Data = reader.result.split(',')[1];
-
+    
                         const imageParts = [
                             {
                                 inlineData: {
@@ -78,7 +81,7 @@ const ResultsScreen = () => {
                         4. An estimate of the CO2 Offset with unit (in kg), if multiple items, calculate total
                         5. Your confidence level in this assessment (as a percentage)
 
-                        Respond in JSON format like this:
+                        Ensure the output is strictly in the following format:
                         {
                             "waste": "Identify the waste (Name of the waste)",
                             "wasteType": "type of waste",
@@ -92,10 +95,36 @@ const ResultsScreen = () => {
 
                         const result = await model.generateContent([prompt, ...imageParts]);
                         const responseText = await result.response.text();
+                        
+                        console.log('Raw API response:', responseText); // Debug log
 
                         try {
-                            const parsedResult = JSON.parse(responseText);
+                            // Sanitize the response text before parsing
+                            const cleanResponse = responseText.trim();
+                            const parsedResult = JSON.parse(cleanResponse);
+
                             setResults(parsedResult);
+
+                            const { uid } = FIREBASE_AUTH.currentUser || {};
+                            if (uid) {
+                                const wasteQuantity = parseFloat(parsedResult.quantity.split(' ')[0]) || 0;
+                                const co2Offset = parseFloat(parsedResult.co2Offset.split(' ')[0]) || 0;
+
+                                // Update user metrics
+                                await updateUserMetrics(uid, wasteQuantity, co2Offset);
+
+                                // Add submission to Firestore
+                                await addSubmission(
+                                    uid,
+                                    photoUri,
+                                    parsedResult.waste.split(", "),
+                                    parsedResult.wasteType.split(", "),
+                                    parsedResult.quantity,
+                                    latitude,
+                                    longitude,
+                                    formatTimestamp(timestamp)
+                                );
+                            }
                         } catch (jsonError) {
                             console.error('Failed to parse JSON response:', responseText);
                         }
@@ -137,7 +166,10 @@ const ResultsScreen = () => {
             <Text>Confidence: {(results.confidence * 100).toFixed(2)}%</Text>
             <Text>Location: {latitude}, {longitude}</Text>
             <Text>Timestamp: {formatTimestamp(timestamp)}</Text>
-            <Button title="View on Map" onPress={handleNavigateToMap} />
+            {/* <Button title="View on Map" onPress={handleNavigateToMap} /> */}
+            <ReusableButton
+
+            />
         </View>
     );
 };

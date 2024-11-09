@@ -7,11 +7,12 @@ const Home = () => {
     return (
         <SafeAreaView className="h-full">
             <ScrollView>
-                {/* <Text>Hi, username</Text> */}
+                <Text className="text-center font-poplight text-xl mt-3">Hi, username</Text>
                 <View className="w-full">
                     <Text className="text-center font-popsemibold text-2xl mt-3">Your Impact</Text>
-                    <View className="flex-row flex-wrap justify-between gap-5 mt-10 px-5 flex">
-                        <View className="bg-blue-200 rounded-xl px-6 items-center py-4">
+                    <View className="flex-row flex-wrap justify-around gap-5 mt-10 px-5">
+
+                        <View className="bg-blue-200 rounded-xl px-6 items-center py-4 grow">
                             <Recycle color="#63C132" size={28} strokeWidth={2.25}/>
                             <Text
                             className={`text-4xl font-popextrabold mt-5`}
@@ -21,8 +22,8 @@ const Home = () => {
                             <Text className={`text-sm font-popbold`}>Waste Collected</Text>
                         </View>
 
-                        <View className="bg-blue-200 rounded-xl px-6 items-center py-4">
-                            <MapPin color="#63C132"/>
+                        <View className="bg-blue-200 rounded-xl px-6 items-center py-4 grow">
+                            <MapPin color="#63C132" size={28} strokeWidth={2.25}/>
                             <Text
                             className={`text-4xl font-popextrabold mt-5`}
                             >
@@ -31,8 +32,8 @@ const Home = () => {
                             <Text className={`text-sm font-popbold`}>Reports Submitted</Text>
                         </View>
 
-                        <View className="bg-blue-200 rounded-xl px-6 items-center py-4">
-                            <Coins color="#63C132"/>
+                        <View className="bg-blue-200 rounded-xl px-6 items-center py-4 grow">
+                            <Coins color="#63C132" size={28} strokeWidth={2.25}/>
                             <Text
                             className={`text-4xl font-popextrabold mt-5`}
                             >
@@ -41,8 +42,8 @@ const Home = () => {
                             <Text className={`text-sm font-popbold`}>Tokens Earned</Text>
                         </View>
 
-                        <View className="bg-blue-200 rounded-xl px-6 items-center py-4">
-                            <Leaf color="#63C132"/>
+                        <View className="bg-blue-200 rounded-xl px-6 items-center py-4 grow">
+                            <Leaf color="#63C132" size={28} strokeWidth={2.25}/>
                             <Text
                             className={`text-4xl font-popextrabold mt-5`}
                             >

@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { Text, ScrollView, View, Alert } from "react-native";
+import { Text, ScrollView, View, Alert, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { FIREBASE_AUTH } from "../../FirebaseConfig"; // Import Firebase Auth instance
 import ReusableButton from "@/components/ReusableButton";
 import FormField from "@/components/FormField";
 import { Link, router } from "expo-router";
+import { createUser } from "../../services/firestoreService";
+import { images } from "@/constants";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -30,6 +32,10 @@ const SignUp = () => {
       );
 
       const user = userCredential.user;
+
+      // Save user data in Firestore
+      await createUser(user.uid, username, email);
+
       Alert.alert("Success", `Welcome, ${username || "User"}!`);
       console.log("User created:", user);
       // Optionally navigate to a different screen or save user info
@@ -43,10 +49,13 @@ const SignUp = () => {
   };
 
   return (
-    <SafeAreaView className="bg-tertiary h-full">
+    <SafeAreaView className="h-full">
       <ScrollView>
-        <View className="w-full justify-center min-h-[70vh] px-4 my-6">
-          <Text className="font-popbold text-2xl">Welcome!</Text>
+        <View className="w-full justify-center min-h-[70vh] px-6 my-6 relative">
+          <View className="flex flex-row items-start">
+            <Image source={images.signinbg} resizeMode="contain" className="w-full h-[20vh]"/>
+          </View>
+          <Text className="font-poplight text-4xl">Welcome!</Text>
           {/* User input fields */}
           <FormField
             title="Username"
@@ -72,8 +81,8 @@ const SignUp = () => {
           <ReusableButton
             title="Sign Up"
             handlePress={handleSignUp}
-            containerStyles="bg-primary mt-7"
-            textStyles="text-white"
+            containerStyles="bg-complementary mt-7"
+            textStyles="text-white text-xl"
             isLoading={isLoading}
           />
 
@@ -81,7 +90,7 @@ const SignUp = () => {
             <Text className="text-lg text-black font-popregular">
               Already have an account?
             </Text>
-            <Link href="/sign-in" className="text-lg font-popsemibold text-primary">
+            <Link href="/sign-in" className="text-lg font-popsemibold text-complementary">
               Sign In
             </Link>
           </View>
