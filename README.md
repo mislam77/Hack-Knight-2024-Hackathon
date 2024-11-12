@@ -42,12 +42,10 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -57,7 +55,7 @@
 ## About The Project
 <br />
 <div align="center">
-  [![Ecofriend.ly Demo](https://img.youtube.com/vi/51Pz8MDM5bM/0.jpg)](https://www.youtube.com/watch?v=51Pz8MDM5bM)
+  [![Ecofriend.ly Demo](https://img.youtube.com/vi/51Pz8MDM5bM/1.jpg)](https://www.youtube.com/watch?v=51Pz8MDM5bM)
 </div>
 <br />
 <p>Ecofriend.ly is a mobile application built with <strong>React Native</strong>, <strong>Nativewind</strong>, <strong>Firebase</strong>, and <strong>Gemini AI</strong>, designed to empower communities to tackle waste management through technology and gamification. Developed by a team of passionate developers during a hackathon, the app offers an innovative, engaging, and impactful approach to keeping urban areas clean.</p><br />
@@ -94,18 +92,7 @@
 
 To get a local copy up and running follow these simple steps.
 
-### Prerequisites
-
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
-
-## Get started
 
 1. Install dependencies
 
