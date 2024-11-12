@@ -55,8 +55,7 @@
 ## About The Project
 <br />
 <div align="center">
-  [![Ecofriend.ly Demo](https://img.youtube.com/vi/51Pz8MDM5bM/0.jpg)]
-  (https://www.youtube.com/watch?v=51Pz8MDM5bM "Ecofriend.ly Demo")
+  [![Ecofriend.ly Demo](https://img.youtube.com/vi/51Pz8MDM5bM/0.jpg)](https://www.youtube.com/watch?v=51Pz8MDM5bM "Ecofriend.ly Demo")
 </div>
 <br />
 <p>Ecofriend.ly is a mobile application built with <strong>React Native</strong>, <strong>Nativewind</strong>, <strong>Firebase</strong>, and <strong>Gemini AI</strong>, designed to empower communities to tackle waste management through technology and gamification. Developed by a team of passionate developers during a hackathon, the app offers an innovative, engaging, and impactful approach to keeping urban areas clean.</p><br />
