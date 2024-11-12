@@ -15,8 +15,7 @@
 <div align="center">
   
   <h3 align="center">Ecofriend.ly</h3>
-  <br />
-  <h5 align="center">Hack Knight'24 Best Environmental Hack</h5>
+  <h4 align="center">Hack Knight'24 Best Environmental Hack</h4>
 
   <p align="center">
     Ecofriend.ly is an AI-powered app that identifies waste, reports it to authorities, and gamifies cleanup with points and leaderboards—making it fun and easy to create cleaner, greener communities!
@@ -56,10 +55,11 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+<br />
 <div align="center">
   [![Ecofriend.ly Demo](https://img.youtube.com/vi/51Pz8MDM5bM/0.jpg)](https://www.youtube.com/watch?v=51Pz8MDM5bM)
 </div>
-
+<br />
 <p>Ecofriend.ly is a mobile application built with <strong>React Native</strong>, <strong>Nativewind</strong>, <strong>Firebase</strong>, and <strong>Gemini AI</strong>, designed to empower communities to tackle waste management through technology and gamification. Developed by a team of passionate developers during a hackathon, the app offers an innovative, engaging, and impactful approach to keeping urban areas clean.</p><br />
 
 <strong>✨ Key Features</strong><br />
