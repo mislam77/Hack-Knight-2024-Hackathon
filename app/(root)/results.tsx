@@ -23,7 +23,7 @@ const ResultsScreen = () => {
     const { photoUri, latitude, longitude, timestamp } = route.params || {};
     const [results, setResults] = useState<Results | null>(null);
     const [loading, setLoading] = useState(true);
-    const geminiApiKey = 'AIzaSyDw_IqkX8InhtPcHIUq6AeYFuzOVEHTvyA';
+    const geminiApiKey = process.env.GEMINI_API_KEY;
 
     const fetchUsername = async (userId) => {
         try {
